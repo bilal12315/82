@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Монополия</title>
+
+<style>
+.boxs {
+	height: 100px;
+	width: 100px;
+	background-color: green;
+	border: solid;
+	position: absolute;
+}
+
+.firsBox {
+	background-color: white;
+	background-image: url(duckl.png);
+	background-size: cover;
+}
+</style>
+
+</head>
+<body>
+
+<h4 style="margin-left: 20px">Score: <span class="score">150</span></h4>
+
+<img src="dice.png" class="bt" style="width: 100px; margin-left: 20px">
+
+
+<div class="boxs firsBox" style="margin-left: 20px">finish</div>
+<div class="boxs" style="margin-left: 130px">1</div>
+<div class="boxs" style="margin-left: 240px">2</div>
+<div class="boxs" style="margin-left: 350px; background:red">3</div>
+<div class="boxs" style="margin-left: 460px">4</div>
+<div class="boxs" style="margin-left: 570px">5</div>
+<div class="boxs" style="margin-left: 680px; background:red">6</div>
+<div class="boxs" style="margin-left: 790px">7</div>
+<div class="boxs" style="margin-left: 900px">8</div>
+<div class="boxs" style="margin-left: 1010px; background:red">9</div>
+<div class="boxs" style="margin-left: 1120px">10</div>
+<div class="boxs" style="margin-left: 1230px">11</div>
+
+<div class="boxs" style="margin-left: 1340px; background:red">12</div>
+<div class="boxs" style="margin-left: 1340px; margin-top:110px">13</div>
+<div class="boxs" style="margin-left: 1340px; margin-top:220px">14</div>
+<div class="boxs" style="margin-left: 1340px; margin-top:330px">15</div>
+
+<div class="boxs" style="margin-left: 1340px; margin-top:440px">16</div>
+<div class="boxs" style="margin-left: 1230px; margin-top:440px">17</div>
+<div class="boxs" style="margin-left: 1120px; margin-top:440px">18</div>
+<div class="boxs" style="margin-left: 1010px; margin-top:440px">19</div>
+
+<div class="boxs" style="margin-left: 900px; margin-top:440px">20</div>
+<div class="boxs" style="margin-left: 790px; margin-top:440px">21</div>
+<div class="boxs" style="margin-left: 680px; margin-top:440px">22</div>
+<div class="boxs" style="margin-left: 570px; margin-top:440px">23</div>
+
+<div class="boxs" style="margin-left: 460px; margin-top:440px">24</div>
+<div class="boxs" style="margin-left: 350px; margin-top:440px">25</div>
+<div class="boxs" style="margin-left: 240px; margin-top:440px">26</div>
+<div class="boxs" style="margin-left: 130px; margin-top:440px">27</div>
+
+<div class="boxs" style="margin-left: 20px; margin-top:440px">28</div>
+<div class="boxs" style="margin-left: 20px; margin-top:330px">29</div>
+<div class="boxs" style="margin-left: 20px; margin-top:220px">30</div>
+<div class="boxs" style="margin-left: 20px; margin-top:110px">31</div>
+
+<script>
+
+let position = 0;
+let score = 150;
+
+let boxes = document.querySelectorAll(".boxs");
+let dice = document.querySelector(".bt");
+let scoreSpan = document.querySelector(".score");
+
+
+let player = document.createElement("div");
+player.style.width = "40px";
+player.style.height = "40px";
+player.style.background = "blue";
+player.style.position = "absolute";
+player.style.borderRadius = "50%";
+
+document.body.appendChild(player);
+
+function movePlayer() {
+	let box = boxes[position];
+
+	player.style.left = (box.offsetLeft + 30) + "px";
+	player.style.top = (box.offsetTop + 30) + "px";
+}
+
+movePlayer();
+
+dice.onclick = function() {
+
+	let random = Math.floor(Math.random() * 6) + 1;
+
+	position += random;
+
+	if (position >= boxes.length) {
+		position = boxes.length - 1;
+		alert("Ты выиграл!");
+	}
+
+	if (position == 12) {
+		position -= 5;
+		alert("Назад на 5!");
+	}
+
+	if (position == 3 || position == 6 || position == 9) {
+		score -= 20;
+		alert("Минус 20!");
+	}
+
+	scoreSpan.innerHTML = score;
+
+	movePlayer();
+};ы
+
+  ва
+</script>
+
+</body>
+</html>
